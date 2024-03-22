@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edge.agent.repository.mysql.mapper.DbChannelInstanceMapper">
+    <delete id="deleteByRelation">
+        delete from db_channel_instance where pk_allocation_relation = #{pkAllocationRelation}
+    </delete>
+    <delete id="deleteByRelations">
+        delete from db_channel_instance
+        WHERE pk_allocation_relation in
+        (
+        <foreach collection="relationIds" item="item" separator=",">
+            #{item}
+        </foreach>
+        )
+    </delete>
+    <select id="findByAgent" resultType="com.edge.agent.repository.mysql.entity.DbChannelInstance">
+        select * from db_channel_instance where agent_ip = #{agentIp}
+    </select>
+    <select id="findByNetPoint" resultType="com.edge.agent.repository.mysql.entity.DbChannelInstance">
+        SELECT
+        *
+        FROM
+        db_channel_instance
+        WHERE
+        agent_ip = #{agent.ip}
+        <if test="agent.port!=null and agent.port!='' ">
+            and agent_port = #{agent.port}
+        </if>
+        AND plc_ip = #{plc.ip}
+        <if test="plc.port!=null and plc.port!='' ">
+            AND plc_port = #{plc.port}
+        </if>
+    </select>
+    <select id="findByNetPointAll" resultType="com.edge.agent.repository.mysql.entity.DbChannelInstance">
+        SELECT
+        *
+        FROM
+        db_channel_instance
+        WHERE
+        agent_ip = #{agent.ip}
+        <if test="agent.port!=null and agent.port!='' ">
+            and agent_port = #{agent.port}
+        </if>
+        AND plc_ip = #{plc.ip}
+        <if test="plc.port!=null and plc.port!='' ">
+            AND plc_port = #{plc.port}
+        </if>
+    </select>
+    <select id="findByRelation" resultType="com.edge.agent.repository.mysql.entity.DbChannelInstance">
+        SELECT
+        *
+        FROM
+        db_channel_instance
+        WHERE
+        pk_allocation_relation = #{pkAllocationRelation}
+    </select>
+    <update id="updateSyncInfo">
+        update db_channel_instance set sync_info = #{message} where plc_ip = #{ip} and plc_port = #{port}
+    </update>
+
+</mapper>

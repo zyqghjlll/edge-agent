@@ -1,0 +1,37 @@
+#server:
+#  port: 9090
+#spring:
+#  profiles:
+#    active: dev
+#  application:
+#    name: plc-agent
+#  main:
+#    allow-circular-references: true
+#    allow-bean-definition-overriding: true
+#  config:
+#    import: nacos:plc-agent.yaml
+#  mvc:
+#    pathmatch:
+#      matching-strategy: ant_path_matcher
+#  cloud:
+#    nacos:
+#      server-addr: http://192.168.0.170:30222
+#      config:
+#        username: nacos
+#        password: nacos
+#        server-addr: http://192.168.0.170:30222
+#        file-extension: yaml
+#        namespace: CP074R-001
+#
+##mybatis-plus
+#mybatis-plus:
+#  mapper-locations: classpath:mapper/*.xml
+#  configuration:
+#    map-underscore-to-camel-case: true
+#    #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    cache-enabled: false
+#  type-aliases-package: com.edge.agent.repository.mysql.entity
+#
+##    local-cache-scope: statement
+##logging:
+##  config: classpath:logging-spring.xml

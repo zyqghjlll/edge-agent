@@ -1,0 +1,90 @@
+#spring:
+#  main:
+#    allow-circular-references: true
+#    allow-bean-definition-overriding: true
+#  config:
+#    import: nacos:plc-agent.yaml
+#  mvc:
+#    pathmatch:
+#      matching-strategy: ant_path_matcher
+#  datasource:
+#    #  连接地址（解决UTF-8中文乱码问题 + 时区校正）
+#    #  rewriteBatchedStatements=true 开启批处理模式）
+#    url: jdbc:mysql://192.168.0.170:3306/elco_edge_plcagent?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
+#    #  用户名
+#    username: root
+#    #  密码
+#    password: toor
+#    #  连接驱动名称
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    hikari:
+#      pool-name: Hikari
+#      maximum-pool-size: 10
+#      auto-commit: true
+#      idle-timeout: 500000
+#      max-lifetime: 1800000
+#      connection-timeout: 300000
+#      validationTimeout: 300000
+#      connection-test-query: SELECT 1
+##  cloud:
+##    nacos:
+##      discovery:
+##        enabled: false
+##      config:
+##        enabled: false
+##        refresh-enabled: false
+#
+## MindSphere 配置
+#mdsp:
+#  appName: edgevass
+#  appVersion: v1.0.0
+#  clientId: start1-edgevass-v1.0.0
+#  clientSecret: kFulrMKCTIKa8KiD4SwZE6M8xbnZHMY72aqRDFWs3mj
+#  hostTenant: start1
+#  userTenant: start1
+#  hostEnvironment: cn1
+#  hostBaseDomain: mindsphere-in.cn
+#
+## 报文配置规则
+#rule:
+#  assetId: 965e96afd2a34b31a0fcce0767dab24a
+#  fileName: PointConfig.txt
+#  eventId: 617e9085-f33c-4220-be4f-908a3c7770ea
+#  url: http://localhost:8083/other/write
+#  noticeEventId: e965e21b-0930-46ca-a527-14816e2c9654
+#  farm: 2323
+#  baseUrl: http://localhost:8888
+#
+## 需要连接PLC的清单 MindSphere上的文件路径
+#file:
+#  entityId: 965e96afd2a34b31a0fcce0767dab24a
+#  filePath: plc.txt
+#  groupCode: farmId
+#
+## 批处理条数
+#consumer:
+#  db-consumer:
+#    consumerCount: 100
+#  mindsphere-consumer:
+#    consumerCount: 100
+#  status-consumer:
+#    consumerCount: 20
+#
+## 模式  test：测试模式 (默认|缺省)；prod：生产模式
+#mode:
+#  # 连接器模式
+#  connector-mode: test
+#  # 下发报文模式
+#  send-mode: test
+#  # mindsphere模式
+#  mindsphere-mode: test
+#
+## 超时处理警告-超时时间设定，毫秒数(Long)
+#warn-time: 3000
+#
+#agent:
+#  code: "PLC-Agent-opcua"
+#  description: ""
+#  group-code: "opcua"
+#  max-connections: 300
+#  uptime: 5000

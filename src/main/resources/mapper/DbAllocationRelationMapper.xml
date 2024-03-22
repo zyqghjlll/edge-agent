@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edge.agent.repository.mysql.mapper.DbAllocationRelationMapper">
+    <delete id="deleteByPlc">
+        delete from db_allocation_relation
+        WHERE pk_plc in
+        (
+        <foreach collection="plcIds" item="item" separator=",">
+            #{item}
+        </foreach>
+        )
+    </delete>
+    <select id="findByAgent" resultType="com.edge.agent.repository.mysql.entity.DbAllocationRelation">
+        select * from db_allocation_relation where pk_agent = #{pkAgent}
+    </select>
+    <select id="findByAgentAndPlc" resultType="com.edge.agent.repository.mysql.entity.DbAllocationRelation">
+        select * from db_allocation_relation where pk_agent = #{pkAgent} and pk_plc = #{pkPlc}
+    </select>
+    <select id="findByAgents" resultType="com.edge.agent.repository.mysql.entity.DbAllocationRelation">
+        select * from db_allocation_relation
+        WHERE pk_agent in
+        (
+        <foreach collection="pkAgents" item="item" separator=",">
+            #{item}
+        </foreach>
+        )
+    </select>
+</mapper>

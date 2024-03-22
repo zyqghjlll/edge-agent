@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edge.agent.repository.mysql.mapper.DbMdspFailedMapper">
+    <insert id="batchInsert">
+        INSERT INTO db_mdsp_failed(
+        pk_mdsp_failed,
+        pk_record,
+        status,
+        send_times,
+        create_time)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.pkMdspFailed},
+            #{item.pkRecord},
+            #{item.status},
+            #{item.sendTimes},
+            #{item.createTime}
+            )
+        </foreach>
+    </insert>
+
+    <update id="batchReSendSucceed">
+        UPDATE db_mdsp_failed set status = 1, send_times = send_times + 1
+        WHERE pk_record in
+        (
+        <foreach collection="ids" item="item" separator=",">
+            #{item}
+        </foreach>
+        )
+    </update>
+
+    <update id="batchReSendFailed">
+        UPDATE db_mdsp_failed set status = 0, send_times = send_times + 1
+        WHERE pk_record in
+        (
+        <foreach collection="ids" item="item" separator=",">
+            #{item}
+        </foreach>
+        )
+    </update>
+
+    <select id="findNeedReSend" resultType="com.edge.agent.repository.mysql.entity.DbMdspFailed">
+        select *
+        from db_mdsp_failed dmf
+        join db_receive_record drr on dmf.pk_record = drr.pk_record
+        where drr.local_ip = #{agentIp} and dmf.`status` = 0 and dmf.send_times <![CDATA[ <= ]]> 3
+        limit 100
+    </select>
+
+    <select id="selectCanRemove">
+        select *
+        from db_mdsp_failed dmf
+        where need_resend = 'NO'
+        and pk_record in
+        (
+        <foreach collection="pkRecordList" item="item" separator=",">
+            #{item}
+        </foreach>
+        )
+    </select>
+
+    <delete id="deleteOutReceive">
+        delete from db_mdsp_failed
+        where pk_record in
+        (
+        <foreach collection="pkRecordList" item="item" separator=",">
+            #{item}
+        </foreach>
+        )
+    </delete>
+
+    <update id="updateSendTimes">
+        UPDATE db_mdsp_failed set send_times = send_times + 1
+        WHERE pk_record in
+        (
+        <foreach collection="pkRecordList" item="item" separator=",">
+            #{item}
+        </foreach>
+        )
+    </update>
+
+</mapper>

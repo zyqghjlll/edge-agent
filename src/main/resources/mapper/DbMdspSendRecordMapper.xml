@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edge.agent.repository.mysql.mapper.DbMdspSendRecordMapper">
+    <insert id="batchInsert">
+        INSERT INTO db_mdsp_send_record(
+        pk_mdsp_send_record,
+        pk_record,
+        send_target,
+        whether_first_time_to_send,
+        send_status,
+        failed_reason,
+        receive_time,
+        send_time,
+        complete_time,
+        create_time)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.pkMdspSendRecord},
+            #{item.pkRecord},
+            #{item.sendTarget},
+            #{item.whetherFirstTimeToSend},
+            #{item.sendStatus},
+            #{item.failedReason},
+            #{item.receiveTime},
+            #{item.sendTime},
+            #{item.completeTime},
+            #{item.createTime}
+            )
+        </foreach>
+    </insert>
+
+    <delete id="deleteOutReceive">
+        delete from db_mdsp_send_record
+        where pk_record in
+        (
+        <foreach collection="pkRecordList" item="item" separator=",">
+            #{item}
+        </foreach>
+        )
+    </delete>
+</mapper>

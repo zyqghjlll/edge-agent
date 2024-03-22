@@ -1,0 +1,33 @@
+#server:
+#  port: 9090
+#spring:
+#  profiles:
+#    active: dev
+#  application:
+#    name: plc-agent-tj-test
+#  main:
+#    allow-bean-definition-overriding: true
+#  cloud:
+#    nacos:
+#      server-addr: http://nacos.faw-vw.com:8848
+#      config:
+#        username: CP074R-001
+#        password: cP07$r-001@20##
+#        server-addr: http://nacos.faw-vw.com:8848
+#        file-extension: yaml
+#        namespace: CP074R-001
+#        prefix: plc-agent-tj-test
+#
+#
+##mybatis-plus
+#mybatis-plus:
+#  mapper-locations: classpath:mapper/*.xml
+#  configuration:
+#    map-underscore-to-camel-case: true
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    cache-enabled: false
+#  type-aliases-package: com.edge.agent.repository.mysql.entity
+#
+##    local-cache-scope: statement
+#logging:
+#  config: classpath:logging-spring.xml

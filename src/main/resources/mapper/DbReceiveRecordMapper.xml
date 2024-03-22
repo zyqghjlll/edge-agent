@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edge.agent.repository.mysql.mapper.DbReceiveRecordMapper">
+    <insert id="saveAll">
+        INSERT INTO db_receive_record(
+        pk_record,
+        local_ip,
+        local_port,
+        remote_ip,
+        remote_port,
+        raw_type,
+        raw_time,
+        raw_data,
+        anl_data,
+        arr_data,
+        is_effective,
+        reason,
+        receive_time,
+        create_time)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.pkRecord},
+            #{item.localIp},
+            #{item.localPort},
+            #{item.remoteIp},
+            #{item.remotePort},
+            #{item.rawType},
+            #{item.rawTime},
+            #{item.rawData},
+            #{item.anlData},
+            #{item.arrData},
+            #{item.isEffective},
+            #{item.reason},
+            #{item.receiveTime},
+            #{item.createTime}
+            )
+        </foreach>
+    </insert>
+    <update id="batchReSendSucceed">
+        UPDATE db_mdsp_failed set status = 1
+        WHERE pk_mdsp_failed in (
+        <foreach collection="ids" item="item" separator=",">
+            #{item}
+        </foreach>
+        )
+    </update>
+
+    <select id="findNeedReSend" resultType="com.edge.agent.repository.mysql.entity.DbMdspFailed">
+        select * from db_mdsp_failed where `status` = 0
+    </select>
+    <select id="findAllById" resultType="com.edge.agent.repository.mysql.entity.DbReceiveRecord">
+        select * from db_receive_record where pk_record in (
+        <foreach collection="ids" item="item" separator=",">
+            #{item}
+        </foreach>
+        )
+    </select>
+
+    <select id="selectHistoryList" resultType="com.edge.agent.repository.mysql.entity.DbReceiveRecord">
+        select *
+        from db_receive_record
+        where pk_record <![CDATA[ < ]]> #{pkRecord}
+        order by pk_record limit #{limit}
+    </select>
+
+    <select id="selectLastOneByDate" resultType="com.edge.agent.repository.mysql.entity.DbReceiveRecord">
+        select * from db_receive_record where create_time <![CDATA[ < ]]> #{date} order by pk_record desc limit 1
+    </select>
+
+    <delete id="deleteByPkRecordList">
+        delete from db_receive_record
+        where pk_record in
+        (
+        <foreach collection="pkRecordList" item="item" separator=",">
+            #{item}
+        </foreach>
+        )
+    </delete>
+
+</mapper>

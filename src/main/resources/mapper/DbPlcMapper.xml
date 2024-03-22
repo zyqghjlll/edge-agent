@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edge.agent.repository.mysql.mapper.DbPlcMapper">
+
+    <insert id="batchInsert">
+        INSERT INTO db_plc(
+        pk_plc,
+        asset_id,
+        ip,
+        port,
+        code,
+        description,
+        location,
+        production_line,
+        farm_id,
+        group_code,
+        sync_time,
+        deleted,
+        msg_cycle,
+        protocol)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.pkPlc},
+            #{item.assetId},
+            #{item.ip},
+            #{item.port},
+            #{item.code},
+            #{item.description},
+            #{item.location},
+            #{item.productionLine},
+            #{item.farmId},
+            #{item.groupCode},
+            #{item.syncTime},
+            #{item.deleted},
+            #{item.msgCycle},
+            #{item.protocol}
+            )
+        </foreach>
+    </insert>
+
+    <update id="batchUpdate" parameterType="java.util.List">
+        update db_plc
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="asset_id=case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test="i.assetId != null and i.assetId != ''">
+                        when pk_plc=#{i.pkPlc} then #{i.assetId}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="ip=case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test="i.ip != null">
+                        when pk_plc=#{i.pkPlc} then #{i.ip}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="port=case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test="i.port != null">
+                        when pk_plc=#{i.pkPlc} then #{i.port}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="code=case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test="i.code != null">
+                        when pk_plc=#{i.pkPlc} then #{i.code}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="description=case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test="i.description != null">
+                        when pk_plc=#{i.pkPlc} then #{i.description}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="location=case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test="i.location != null">
+                        when pk_plc=#{i.pkPlc} then #{i.location}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="production_line=case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test="i.productionLine != null">
+                        when pk_plc=#{i.pkPlc} then #{i.productionLine}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="farm_id=case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test="i.farmId != null">
+                        when pk_plc=#{i.pkPlc} then #{i.farmId}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="group_code=case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test="i.groupCode != null">
+                        when pk_plc=#{i.pkPlc} then #{i.groupCode}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="sync_time=case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test="i.syncTime != null">
+                        when pk_plc=#{i.pkPlc} then #{i.syncTime}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="deleted=case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test="i.deleted != null">
+                        when pk_plc=#{i.pkPlc} then #{i.deleted}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="msg_cycle=case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test="i.msgCycle != null">
+                        when pk_plc=#{i.pkPlc} then #{i.msgCycle}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="protocol=case" suffix="end,">
+                <foreach collection="list" item="i" index="index">
+                    <if test="i.protocol != null">
+                        when pk_plc=#{i.pkPlc} then #{i.protocol}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where
+        <foreach collection="list" separator="or" item="i" index="index">
+            pk_plc=#{i.pkPlc}
+        </foreach>
+    </update>
+
+    <select id="findAll" resultType="com.edge.agent.repository.mysql.entity.DbPlc">
+        select *
+        from db_plc
+    </select>
+    <select id="findUnDeleted" resultType="com.edge.agent.repository.mysql.entity.DbPlc">
+        select *
+        from db_plc
+        where deleted = 0
+    </select>
+    <select id="findByIpAndPort" resultType="com.edge.agent.repository.mysql.entity.DbPlc">
+        select *
+        from db_plc
+        where ip = #{ip}
+          and port = #{port}
+    </select>
+    <select id="findByGroupCode" resultType="com.edge.agent.repository.mysql.entity.DbPlc">
+        select *
+        from db_plc
+        where group_code = #{groupCode}
+          and deleted = 0
+          and protocol = #{protocol};
+    </select>
+</mapper>
