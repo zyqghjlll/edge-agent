@@ -6,8 +6,8 @@ import com.edge.agent.core.manager.ChannelInstanceRepository;
 import com.edge.agent.core.manager.buffer.AbstractEventHandler;
 import com.edge.agent.core.manager.buffer.DataEvent;
 import com.edge.agent.core.manager.buffer.StatusInfo;
-import com.edge.agent.core.plc.Plc;
-import com.edge.agent.core.plc.PlcManager;
+import com.edge.agent.core.remote.Plc;
+import com.edge.agent.core.remote.PlcManager;
 
 /**
  * @author zyq

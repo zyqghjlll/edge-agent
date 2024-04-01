@@ -9,7 +9,7 @@ import com.edge.agent.utils.CommonUtil;
 import com.edge.agent.core.channel.ConnectionType;
 import com.edge.agent.core.channel.Connector;
 import com.edge.agent.core.channel.Contact;
-import com.edge.agent.core.plc.PlcPoint;
+import com.edge.agent.core.remote.PlcPoint;
 import org.eclipse.milo.opcua.stack.core.types.builtin.NodeId;
 import org.eclipse.milo.opcua.stack.core.types.builtin.StatusCode;
 

@@ -3,7 +3,7 @@ package com.edge.agent.repository.mysql.entity;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.edge.agent.core.netpoint.exception.NetPointException;
-import com.edge.agent.core.plc.Plc;
+import com.edge.agent.core.remote.Plc;
 import lombok.Data;
 
 import java.io.Serializable;

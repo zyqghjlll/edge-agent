@@ -6,7 +6,7 @@ import com.edge.agent.core.manager.ChannelInstanceRepository;
 import com.edge.agent.core.manager.Monitoring;
 import com.edge.agent.core.netpoint.NetPoint;
 import com.edge.agent.core.netpoint.exception.NetPointException;
-import com.edge.agent.core.plc.Plc;
+import com.edge.agent.core.remote.Plc;
 import com.edge.agent.core.relation.Relations;
 import com.edge.agent.repository.mysql.entity.DbAllocationRelation;
 import com.edge.agent.repository.mysql.entity.DbChannelInstance;

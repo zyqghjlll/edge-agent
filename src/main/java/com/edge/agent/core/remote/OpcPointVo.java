@@ -1,4 +1,4 @@
-package com.edge.agent.core.plc;
+package com.edge.agent.core.remote;
 
 public class OpcPointVo {
     public Object getAssetId() {

@@ -3,7 +3,7 @@ package com.edge.agent.adapter.allocation;
 
 import cn.hutool.core.collection.CollUtil;
 import com.edge.agent.core.agent.Agent;
-import com.edge.agent.core.plc.Plc;
+import com.edge.agent.core.remote.Plc;
 import com.edge.agent.core.relation.allocation.AllocationStrategy;
 import com.edge.agent.core.relation.allocation.Participants;
 import com.edge.agent.core.relation.allocation.Resources;

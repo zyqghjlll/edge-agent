@@ -1,4 +1,4 @@
-package com.edge.agent.core.plc;
+package com.edge.agent.core.remote;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.edge.agent.common.config.HikariDataSourceConfig;

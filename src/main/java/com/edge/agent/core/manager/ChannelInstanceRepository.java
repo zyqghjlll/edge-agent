@@ -2,7 +2,7 @@ package com.edge.agent.core.manager;
 
 import com.edge.agent.core.relation.Relations;
 import com.edge.agent.core.agent.Agent;
-import com.edge.agent.core.plc.Plc;
+import com.edge.agent.core.remote.Plc;
 
 import java.util.Collection;
 import java.util.List;

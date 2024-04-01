@@ -1,4 +1,4 @@
-package com.edge.agent.core.plc;
+package com.edge.agent.core.remote;
 
 import com.edge.agent.common.ContextData;
 import com.edge.agent.core.netpoint.NetPoint;
