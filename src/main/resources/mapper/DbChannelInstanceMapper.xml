@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.edge.agent.repository.mysql.mapper.DbChannelInstanceMapper">
+<mapper namespace="com.edge.agent.repository.mapper.DbChannelInstanceMapper">
     <delete id="deleteByRelation">
         delete from db_channel_instance where pk_allocation_relation = #{pkAllocationRelation}
     </delete>
@@ -13,10 +13,10 @@
         </foreach>
         )
     </delete>
-    <select id="findByAgent" resultType="com.edge.agent.repository.mysql.entity.DbChannelInstance">
+    <select id="findByAgent" resultType="com.edge.agent.repository.entity.DbChannelInstance">
         select * from db_channel_instance where agent_ip = #{agentIp}
     </select>
-    <select id="findByNetPoint" resultType="com.edge.agent.repository.mysql.entity.DbChannelInstance">
+    <select id="findByNetPoint" resultType="com.edge.agent.repository.entity.DbChannelInstance">
         SELECT
         *
         FROM
@@ -31,7 +31,7 @@
             AND plc_port = #{plc.port}
         </if>
     </select>
-    <select id="findByNetPointAll" resultType="com.edge.agent.repository.mysql.entity.DbChannelInstance">
+    <select id="findByNetPointAll" resultType="com.edge.agent.repository.entity.DbChannelInstance">
         SELECT
         *
         FROM
@@ -46,7 +46,7 @@
             AND plc_port = #{plc.port}
         </if>
     </select>
-    <select id="findByRelation" resultType="com.edge.agent.repository.mysql.entity.DbChannelInstance">
+    <select id="findByRelation" resultType="com.edge.agent.repository.entity.DbChannelInstance">
         SELECT
         *
         FROM

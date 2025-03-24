@@ -1,6 +1,6 @@
 package com.edge.agent.core.consumer.receive;
 
-import com.edge.agent.repository.mysql.entity.DbReceiveRecord;
+import com.edge.agent.repository.entity.DbReceiveRecord;
 
 import java.util.Date;
 import java.util.List;

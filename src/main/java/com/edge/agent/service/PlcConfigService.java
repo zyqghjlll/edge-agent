@@ -52,12 +52,8 @@ public class PlcConfigService {
     private PlcManager plcManager;
     @Value("${consumer.db-consumer.consumerCount}")
     private int dbConsumerCount;
-    @Value("${consumer.mindsphere-consumer.consumerCount}")
-    private int mindsphereConsumerCount;
     @Value("${consumer.status-consumer.consumerCount}")
     private int statusConsumerCount;
-    @Value("${file.groupCode}")
-    private String groupCode;
     @Value("${mode.connector-mode}")
     private String connectorMode;
     @Autowired
@@ -149,10 +145,9 @@ public class PlcConfigService {
         for (int i = 0; i < dbConsumers.length; i++) {
             dbConsumers[i] = new ReceiveDataHandler(receiveDataRepository);
         }
-        WorkHandler[] someConsumers = new WorkHandler[mindsphereConsumerCount];
 //        for (int i = 0; i < someConsumers.length; i++) {
 //            someConsumers[i] = new SomeEventHandler(agentManager, plcManager, mindSphereManager, upRecordRepository, upErrorDataRepository);
 //        }
-        return new BufferHelper(1024, dbConsumers, someConsumers);
+        return new BufferHelper(1024, dbConsumers);
     }
 }

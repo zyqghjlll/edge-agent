@@ -10,7 +10,7 @@
 #  datasource:
 #    #  连接地址（解决UTF-8中文乱码问题 + 时区校正）
 #    #  rewriteBatchedStatements=true 开启批处理模式）
-#    url: jdbc:mysql://192.168.0.170:3306/elco_edge_plcagent?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
+#    url: jdbc:mysql://192.168.0.170:3306/edge_data?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
 #    #  用户名
 #    username: root
 #    #  密码
@@ -55,29 +55,20 @@
 #  farm: 2323
 #  baseUrl: http://localhost:8888
 #
-## 需要连接PLC的清单 MindSphere上的文件路径
-#file:
-#  entityId: 965e96afd2a34b31a0fcce0767dab24a
-#  filePath: plc.txt
-#  groupCode: farmId
-#
+
 ## 批处理条数
-#consumer:
-#  db-consumer:
-#    consumerCount: 100
-#  mindsphere-consumer:
-#    consumerCount: 100
-#  status-consumer:
-#    consumerCount: 20
-#
+consumer:
+  db-consumer:
+    consumerCount: 100
+  status-consumer:
+    consumerCount: 20
+
 ## 模式  test：测试模式 (默认|缺省)；prod：生产模式
 #mode:
 #  # 连接器模式
 #  connector-mode: test
 #  # 下发报文模式
 #  send-mode: test
-#  # mindsphere模式
-#  mindsphere-mode: test
 #
 ## 超时处理警告-超时时间设定，毫秒数(Long)
 #warn-time: 3000

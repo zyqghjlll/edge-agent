@@ -2,6 +2,8 @@ server:
   port: 9091
 #  MySQL连接配置信息（以下仅简单配置，更多设置可自行查看）
 spring:
+  application:
+    name: edge-agent
   profiles:
     active: dev
   main:
@@ -13,18 +15,18 @@ spring:
   datasource:
     #  连接地址（解决UTF-8中文乱码问题 + 时区校正）
     #  rewriteBatchedStatements=true 开启批处理模式）
-    url: jdbc:mysql://192.168.0.170:3306/elco_edge_plcagent?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
+    url: jdbc:postgresql://127.0.0.1:5432/edge_data?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
     #  用户名
-    username: root
+    username: admin
     #  密码
-    password: toor
+    password: admin123
     #  连接驱动名称
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: org.postgresql.Driver
     hikari:
       pool-name: Hikari
       maximum-pool-size: 10
       auto-commit: true
-      idle-timeout: 500000
+      idle-timeout: 0
       max-lifetime: 1800000
       connection-timeout: 300000
       validationTimeout: 300000
@@ -54,3 +56,13 @@ agent:
   protocol: "OpcUa"
   max-connections: 300
   uptime: 5000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        # 所有端点都对外暴露可访问到
+        include: '*'
+  metrics:
+    tags:
+      application: ${spring.application.name}

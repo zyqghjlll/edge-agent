@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.12</version>
+        <version>3.1.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.edge.agent</groupId>
@@ -15,40 +15,14 @@
     <name>edge-agent</name>
     <description>edge-agent</description>
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <org.mapstruct.version>1.5.0.Beta1</org.mapstruct.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>spring-beans</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>tomcat-embed-core</artifactId>
-                    <groupId>org.apache.tomcat.embed</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
-            <version>5.3.29</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-core</artifactId>
-            <version>9.0.43</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-            <version>2.5.6</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -63,72 +37,50 @@
         <dependency>
             <groupId>org.eclipse.milo</groupId>
             <artifactId>sdk-client</artifactId>
-            <version>0.6.3</version>
+            <version>0.6.8</version>
         </dependency>
         <dependency>
             <groupId>org.eclipse.milo</groupId>
             <artifactId>sdk-server</artifactId>
-            <version>0.6.3</version>
+            <version>0.6.8</version>
         </dependency>
         <!--OPC UA 数字证书依赖-->
         <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcpkix-jdk15on</artifactId>
-            <version>1.57</version>
+            <version>1.70</version>
         </dependency>
         <!-- MyBatis-Plus 依赖 -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.3.1</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.mybatis</groupId>
-                    <artifactId>mybatis</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-            <version>3.5.6</version>
+            <version>3.5.10</version>  <!-- 兼容 Spring Boot 3.x -->
         </dependency>
         <!-- 数据库连接驱动 -->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.28</version>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.7.2</version>
         </dependency>
-        <!--hutool 工具类-->
+        <!--工具类-->
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.7.22</version>
+            <version>5.8.24</version>
         </dependency>
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.83</version>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+            <version>2.0.40</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>spring-core</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>5.3.29</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -155,157 +107,47 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-            <version>2.0.1.Final</version>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <version>3.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <!-- Micrometer Prometheus registry  -->
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
         </dependency>
     </dependencies>
     <build>
         <resources>
-            <resource>
-                <filtering>true</filtering>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
-            </resource>
-            <!--指定资源的位置（xml放在resources下，可以不用指定）-->
             <resource>
                 <directory>src/main/resources</directory>
             </resource>
         </resources>
         <plugins>
             <plugin>
-                <groupId>com.github.wvengen</groupId>
-                <artifactId>proguard-maven-plugin</artifactId>
-                <version>2.5.3</version>
-                <executions>
-                    <execution>
-                        <!--打包的时候开始混淆-->
-                        <phase>package</phase>
-                        <goals>
-                            <goal>proguard</goal>
-                        </goals>
-                    </execution>
-                </executions>
-
-                <configuration>
-                    <proguardVersion>7.2.1</proguardVersion>
-                    <injar>${project.build.finalName}.jar</injar>
-                    <!--输出的jar-->
-                    <outjar>${project.build.finalName}.jar</outjar>
-                    <!--是否混淆-->
-                    <obfuscate>true</obfuscate>
-                    <proguardInclude>${basedir}/proguard.cfg</proguardInclude>
-
-                    <options>
-                        <!--默认开启，不做收缩（删除注释、未被引用代码）-->
-                        <option>-dontshrink</option>
-                        <!--默认是开启的，这里关闭字节码级别的优化-->
-                        <option>-dontoptimize</option>
-                        <!--对于类成员的命名的混淆采取唯一策略-->
-                        <option>-useuniqueclassmembernames</option>
-                        <!--混淆时不生成大小写混合的类名，默认是可以大小写混合-->
-                        <option>-dontusemixedcaseclassnames</option>
-                        <!--混淆类名之后，对使用Class.forName('className')之类的地方进行相应替代-->
-                        <option>-adaptclassstrings</option>
-
-                        <!--对异常、注解信息在runtime予以保留，不然影响springboot启动-->
-                        <option>-keepattributes
-                            Exceptions,InnerClasses,Signature,Deprecated,SourceFile,LineNumberTable,*Annotation*,EnclosingMethod
-                        </option>
-
-                        <!--此选项将保存接口中的所有原始名称（不混淆）-->
-                        <option>-keepnames interface ** { *; }</option>
-                        <!--此选项将保存所有软件包中的所有原始接口文件（不进行混淆）-->
-                        <!--<option>-keep interface * extends * { *; }</option>-->
-
-                        <!--此选项将保留所有原始方法参数,controller如果参数也混淆会导致传参映射不上  -->
-                        <option>-keepparameternames</option>
-
-                        <!--保留枚举成员及方法-->
-                        <option>-keepclassmembers enum * { *; }</option>
-
-                        <!--不混淆所有类,保存原始定义的注释-->
-                        <!--<option>-keepclassmembers class * {
-                            @org.springframework.context.annotation.Bean *;
-                            @org.springframework.beans.factory.annotation.Autowired *;
-                            @org.springframework.beans.factory.annotation.Value *;
-                            @org.springframework.stereotype.Service *;
-                            @org.springframework.stereotype.Component *;
-                            }
-                        </option>-->
-
-                        <!--忽略warn消息-->
-                        <option>-ignorewarnings</option>
-                        <!--忽略note消息-->
-                        <option>-dontnote</option>
-                    </options>
-                    <libs>
-                        <lib>${java.home}/lib/rt.jar</lib>
-                        <lib>${java.home}/lib/jsse.jar</lib>
-                    </libs>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.guardsquare</groupId>
-                        <artifactId>proguard-base</artifactId>
-                        <version>7.2.1</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>8</source>
-                    <target>8</target>
+                    <source>17</source>
+                    <target>17</target>
                     <encoding>UTF-8</encoding>
-                    <compilerArguments>
-                        <!-- 解决maven命令编译报错，因为rt.jar 和jce.jar在jre的lib下面，不在jdk的lib下面，导致maven找不到（java7以后会出现这个问题）-->
-                        <bootclasspath>${java.home}/lib/rt.jar${path.separator}${java.home}/lib/jce.jar</bootclasspath>
-                    </compilerArguments>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
                 <configuration>
-                    <includeSystemScope>true</includeSystemScope>
                     <mainClass>com.edge.agent.AgentApplication</mainClass>
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.gmavenplus</groupId>
-                <artifactId>gmavenplus-plugin</artifactId>
-                <version>1.8.1</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>addSources</goal>
-                            <goal>addTestSources</goal>
-                            <goal>generateStubs</goal>
-                            <goal>compile</goal>
-                            <goal>generateTestStubs</goal>
-                            <goal>compileTests</goal>
-                            <goal>removeStubs</goal>
-                            <goal>removeTestStubs</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M3</version>
+                <version>3.0.0</version>
                 <configuration>
                     <useFile>false</useFile>
                     <includes>
@@ -313,10 +155,9 @@
                     </includes>
                     <parallel>methods</parallel>
                     <threadCount>10</threadCount>
-                    <testFailureIgnore>true</testFailureIgnore>
+                    <testFailureIgnore>false</testFailureIgnore>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
 </project>

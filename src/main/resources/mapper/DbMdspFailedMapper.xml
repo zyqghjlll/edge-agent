@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.edge.agent.repository.mysql.mapper.DbMdspFailedMapper">
+<mapper namespace="com.edge.agent.repository.mapper.DbMdspFailedMapper">
     <insert id="batchInsert">
         INSERT INTO db_mdsp_failed(
         pk_mdsp_failed,
@@ -40,7 +40,7 @@
         )
     </update>
 
-    <select id="findNeedReSend" resultType="com.edge.agent.repository.mysql.entity.DbMdspFailed">
+    <select id="findNeedReSend" resultType="com.edge.agent.repository.entity.DbMdspFailed">
         select *
         from db_mdsp_failed dmf
         join db_receive_record drr on dmf.pk_record = drr.pk_record

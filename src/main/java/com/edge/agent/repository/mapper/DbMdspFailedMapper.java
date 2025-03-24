@@ -1,7 +1,7 @@
-package com.edge.agent.repository.mysql.mapper;
+package com.edge.agent.repository.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.edge.agent.repository.mysql.entity.DbMdspFailed;
+import com.edge.agent.repository.entity.DbMdspFailed;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

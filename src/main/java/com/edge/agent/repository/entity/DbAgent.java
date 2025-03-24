@@ -1,4 +1,4 @@
-package com.edge.agent.repository.mysql.entity;
+package com.edge.agent.repository.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.edge.agent.core.agent.Agent;

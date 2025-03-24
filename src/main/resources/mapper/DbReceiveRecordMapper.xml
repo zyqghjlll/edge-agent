@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.edge.agent.repository.mysql.mapper.DbReceiveRecordMapper">
+<mapper namespace="com.edge.agent.repository.mapper.DbReceiveRecordMapper">
     <insert id="saveAll">
         INSERT INTO db_receive_record(
         pk_record,
@@ -46,10 +46,10 @@
         )
     </update>
 
-    <select id="findNeedReSend" resultType="com.edge.agent.repository.mysql.entity.DbMdspFailed">
+    <select id="findNeedReSend" resultType="com.edge.agent.repository.entity.DbMdspFailed">
         select * from db_mdsp_failed where `status` = 0
     </select>
-    <select id="findAllById" resultType="com.edge.agent.repository.mysql.entity.DbReceiveRecord">
+    <select id="findAllById" resultType="com.edge.agent.repository.entity.DbReceiveRecord">
         select * from db_receive_record where pk_record in (
         <foreach collection="ids" item="item" separator=",">
             #{item}
@@ -57,14 +57,14 @@
         )
     </select>
 
-    <select id="selectHistoryList" resultType="com.edge.agent.repository.mysql.entity.DbReceiveRecord">
+    <select id="selectHistoryList" resultType="com.edge.agent.repository.entity.DbReceiveRecord">
         select *
         from db_receive_record
         where pk_record <![CDATA[ < ]]> #{pkRecord}
         order by pk_record limit #{limit}
     </select>
 
-    <select id="selectLastOneByDate" resultType="com.edge.agent.repository.mysql.entity.DbReceiveRecord">
+    <select id="selectLastOneByDate" resultType="com.edge.agent.repository.entity.DbReceiveRecord">
         select * from db_receive_record where create_time <![CDATA[ < ]]> #{date} order by pk_record desc limit 1
     </select>
 

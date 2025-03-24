@@ -30,7 +30,7 @@
 #    map-underscore-to-camel-case: true
 #    #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 #    cache-enabled: false
-#  type-aliases-package: com.edge.agent.repository.mysql.entity
+#  type-aliases-package: com.edge.agent.repository.entity
 #
 ##    local-cache-scope: statement
 ##logging:

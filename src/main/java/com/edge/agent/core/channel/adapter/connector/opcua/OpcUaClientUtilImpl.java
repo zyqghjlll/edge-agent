@@ -90,7 +90,7 @@ public class OpcUaClientUtilImpl implements OpcUaClientUtil {
                     .setEndpoint(endpoint)
                     // 证书，用户名认证
                     // .setCertificate(loader.getClientCertificate()).setKeyPair(loader.getClientKeyPair())
-                    // .setIdentityProvider(new UsernameProvider("elco", "123456"))
+                    // .setIdentityProvider(new UsernameProvider("zyq", "123456"))
                     // 匿名验证
                     .setIdentityProvider(new AnonymousProvider())
                     .setRequestTimeout(Unsigned.uint(10000)).build();

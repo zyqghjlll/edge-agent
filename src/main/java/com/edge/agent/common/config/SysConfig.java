@@ -13,8 +13,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SysConfig {
 
-    @Value("${mode.mindsphere-mode}")
-    private String mindsphereMode;
     @Value("${warn-time}")
     private Long warnTime;
 

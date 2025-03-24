@@ -1,4 +1,4 @@
-package com.edge.agent.repository.mysql;
+package com.edge.agent.repository;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
@@ -8,10 +8,10 @@ import com.edge.agent.core.netpoint.exception.NetPointException;
 import com.edge.agent.core.remote.Plc;
 import com.edge.agent.core.remote.PlcPoint;
 import com.edge.agent.core.remote.PlcRepository;
-import com.edge.agent.repository.mysql.entity.DbPlc;
-import com.edge.agent.repository.mysql.entity.DbPlcPoint;
-import com.edge.agent.repository.mysql.mapper.DbPlcMapper;
-import com.edge.agent.repository.mysql.mapper.DbPlcPointMapper;
+import com.edge.agent.repository.entity.DbPlc;
+import com.edge.agent.repository.entity.DbPlcPoint;
+import com.edge.agent.repository.mapper.DbPlcMapper;
+import com.edge.agent.repository.mapper.DbPlcPointMapper;
 import com.edge.agent.utils.SysLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

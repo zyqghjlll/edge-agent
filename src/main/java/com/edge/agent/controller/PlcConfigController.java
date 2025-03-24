@@ -19,7 +19,7 @@ public class PlcConfigController {
     @Autowired
     private PlcConfigService plcConfigService;
 
-    @PostMapping(value = "/isAlive")
+    @GetMapping(value = "/isAlive")
     public Result<?> isAlive() {
         return ResultResponse.success();
     }

@@ -1,7 +1,7 @@
 package com.edge.agent.core.lock.repository.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.edge.agent.repository.mysql.entity.DbAgent;
+import com.edge.agent.repository.entity.DbAgent;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

@@ -1,11 +1,11 @@
-package com.edge.agent.repository.mysql;
+package com.edge.agent.repository;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.edge.agent.core.agent.Agent;
 import com.edge.agent.core.agent.AgentRepository;
-import com.edge.agent.repository.mysql.entity.DbAgent;
-import com.edge.agent.repository.mysql.mapper.DbAgentMapper;
+import com.edge.agent.repository.entity.DbAgent;
+import com.edge.agent.repository.mapper.DbAgentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

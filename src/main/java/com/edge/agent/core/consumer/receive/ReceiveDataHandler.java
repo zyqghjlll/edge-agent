@@ -6,7 +6,7 @@ import com.edge.agent.core.channel.adapter.connector.opcua.NodeValue;
 import com.edge.agent.core.manager.RawInfo;
 import com.edge.agent.core.manager.buffer.AbstractEventHandler;
 import com.edge.agent.core.manager.buffer.DataEvent;
-import com.edge.agent.repository.mysql.entity.DbReceiveRecord;
+import com.edge.agent.repository.entity.DbReceiveRecord;
 
 import java.util.ArrayList;
 import java.util.Date;

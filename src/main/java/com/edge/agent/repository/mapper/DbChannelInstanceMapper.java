@@ -1,8 +1,8 @@
-package com.edge.agent.repository.mysql.mapper;
+package com.edge.agent.repository.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.edge.agent.core.netpoint.NetPoint;
-import com.edge.agent.repository.mysql.entity.DbChannelInstance;
+import com.edge.agent.repository.entity.DbChannelInstance;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
